@@ -1,0 +1,7 @@
+{
+    "files": [
+        "LedControl.qml",
+        "main.py",
+        "main.qml"
+    ]
+}
