@@ -22,7 +22,7 @@ ApplicationWindow {
         }
 
         function onConsoleOutput(text) {
-            console.log("New console output", text)
+            console.log("New console output")
             consoleArea.append(text)
         }
     }
