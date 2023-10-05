@@ -1,0 +1,7 @@
+[
+    {"text":"Käsk1-1", "options": "--leading-fx A --lagging-fx B" },
+    
+    {"text":"Käsk1-2", "options": "--display-fx b" },
+    
+    {"text":"Käsk1-3"}
+] 

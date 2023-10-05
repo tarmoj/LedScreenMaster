@@ -1,0 +1,117 @@
+[
+    {
+        "classes": [
+            {
+                "className": "Bridge",
+                "qualifiedClassName": "Bridge",
+                "object": true,
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ],
+                "classInfos": [
+                    {
+                        "name": "QML.Element",
+                        "value": "auto"
+                    }
+                ],
+                "signals": [
+                    {
+                        "access": "public",
+                        "name": "commandsUpdated",
+                        "arguments": [],
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "consoleOutput",
+                        "arguments": [
+                            {
+                                "name": "a1",
+                                "type": "QString"
+                            }
+                        ],
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "name": "reload",
+                        "arguments": [],
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "getCommands",
+                        "arguments": [
+                            {
+                                "name": "a1",
+                                "type": "int"
+                            }
+                        ],
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "name": "getOptions",
+                        "arguments": [
+                            {
+                                "name": "a1",
+                                "type": "int"
+                            }
+                        ],
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "name": "send",
+                        "arguments": [
+                            {
+                                "name": "a1",
+                                "type": "int"
+                            },
+                            {
+                                "name": "a2",
+                                "type": "int"
+                            }
+                        ],
+                        "returnType": "int"
+                    },
+                    {
+                        "access": "public",
+                        "name": "send",
+                        "arguments": [
+                            {
+                                "name": "a1",
+                                "type": "int"
+                            },
+                            {
+                                "name": "a2",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "a3",
+                                "type": "QString"
+                            }
+                        ],
+                        "returnType": "int"
+                    }
+                ]
+            }
+        ],
+        "outputRevision": 68,
+        "QML_IMPORT_NAME": "io.qt.textproperties",
+        "QML_IMPORT_MAJOR_VERSION": 1,
+        "QML_IMPORT_MINOR_VERSION": 0,
+        "QT_MODULES": [
+            "QtCore",
+            "QtGui",
+            "QtQml",
+            "QtQuickControls2"
+        ],
+        "inputFile": "/home/tarmo/tarmo/programm/qt-projects/led-screen-master/main.py"
+    }
+]
