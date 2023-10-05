@@ -6,8 +6,9 @@ Item {
     width: 600
     height: 50
     property int ledNumber: 1
-    property var commands: bridge.getCommands(ledNumber-1).split("||")
-    property int currentIndex: commandsWidget.value
+    property var commands: bridge ? bridge.getCommands(ledNumber-1).split("||") : []
+    property var options: bridge ? bridge.getOptions(ledNumber-1).split("||") : []
+    property int currentIndex: commandNumberSpinBox.value-1
 
     RowLayout {
         anchors.fill: parent
@@ -20,35 +21,31 @@ Item {
 
 
         SpinBox {
+            id: commandNumberSpinBox
+            Layout.preferredWidth: 60
+            from: 1
+            to: commands.length
+            value: 1
+            editable: true
+
+            onValueChanged: currentIndex = value-1
+        }
+
+        TextField {
             id: commandsWidget
-            property var items: commands
-            from: 0
-            to: items.length - 1
-            value: 0
-            //editable: true
 
             Layout.preferredWidth: 200
 
+            text: commands[currentIndex] || ""
 
-            textFromValue: function(value) {
-                return items[value];
-            }
+        }
 
-            valueFromText: function(text) {
-                for (var i = 0; i < items.length; ++i) {
-                    if (items[i].toLowerCase().indexOf(text.toLowerCase()) === 0)
-                        return i
-                }
-                return sb.value
-            }
+        TextField {
+            id: optionsField
 
-            Label {
-                anchors.left: parent.left
-                anchors.leftMargin: 3
-                anchors.verticalCenter: parent.verticalCenter
-                id: counterNumber
-                text: (parent.value+1).toString()
-            }
+            Layout.preferredWidth: 200
+
+            text: options[currentIndex] || ""
         }
 
 
@@ -57,13 +54,14 @@ Item {
         Button {
             id: sendButton
             text: "Saada"
-            onClicked: bridge.send(ledNumber-1, currentIndex)
+            onClicked: bridge.send(ledNumber-1, commandsWidget.displayText, optionsField.text) //bridge.send(ledNumber-1, currentIndex) // maybe we need also a setter to the´pyhon commands dict?
 
         }
 
         Button {
             id: clearButton
             text: "Tühjenda"
+            onClicked: bridge.send(ledNumber-1, " ", "")
 
         }
 

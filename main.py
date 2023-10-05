@@ -13,11 +13,11 @@ from PySide6.QtQuickControls2 import QQuickStyle
 commandFiles = ["1.txt", "2.txt"]
 
 execute = [
-'sixleds --port /dev/ttyUSB0 --set-page A --content  "%text%"',
-'sshpass -praspberry ssh -t pi@192.168.1.211 \'sixleds --set-page A --content  "%text%" \' ',
-'sshpass -praspberry ssh -t pi@192.168.1.212 \'sixleds --set-page A --content  "%text%" \' ',
-'sshpass -praspberry ssh -t pi@192.168.1.213 \'sixleds --set-page A --content  "%text%" \' ',
-'sshpass -pKontrabass8 ssh -t pi@192.168.1.214 \'sixleds --set-page A --content  "%text%" \' ',
+'sixleds --port /dev/ttyUSB0 %options%  --set-page A --content  "%text%"',
+'sshpass -praspberry ssh -t pi@192.168.1.211 \'sixleds %options%  --set-page A --content  "%text%" \' ',
+'sshpass -praspberry ssh -t pi@192.168.1.212 \'sixleds %options% --set-page A --content  "%text%" \' ',
+'sshpass -praspberry ssh -t pi@192.168.1.213 \'sixleds %options% --set-page A --content  "%text%" \' ',
+'sshpass -pKontrabass8 ssh -t pi@192.168.1.214 \'sixleds %options% --set-page A --content  "%text%" \' ',
 
 
 ]
@@ -25,8 +25,8 @@ execute = [
 #define commands by leds, each led has array of dictionaries (objects)
 commands = [
 [
-    {"text":"Käsk1-1", "options": "" },
-    {"text":"Käsk1-2", "options": "" },
+    {"text":"Käsk1-1", "options": "--leading-fx A --lagging-fx B" },
+    {"text":"Käsk1-2", "options": "--display-fx b" },
 
 ],
 [
@@ -81,6 +81,17 @@ class Bridge(QObject):
             commandString = commandString[:-2]
         return commandString
 
+    @Slot(int, result=str) # needs to return the commands as one string, separator: "||"
+    def getOptions(self, ledIndex):
+        optionsString = ""
+        for element in commands[ledIndex]:
+                optionsString += element["options"]+"||"
+
+        if optionsString.endswith("||"):
+            optionsString = optionsString[:-2]
+        return optionsString
+
+
 
     @Slot(int, int, result=int)
     def send(self, ledIndex, commandIndex, result=int):
@@ -88,40 +99,25 @@ class Bridge(QObject):
         textToSend = commands[ledIndex][commandIndex]["text"]
         commandLine = commandLine.replace("%text%", textToSend)
         print(commandLine)
+        return_code, stdout, stderr = execute_command(commandLine)
+        #return_code = execute_command(commandLine)
+        print(return_code, stdout, stderr)
+        return return_code
+
+    # overload
+    @Slot(int, str, str, result=int)
+    def send(self, ledIndex, textToSend, optionsText="", result=int):
+        commandLine = execute[ledIndex]
+        commandLine = commandLine.replace("%text%", textToSend)
+        commandLine = commandLine.replace("%options%", optionsText)
+        print(commandLine)
         #return_code, stdout, stderr = execute_command(commandLine)
         return_code = execute_command(commandLine)
         #print(stdout, stderr)
         return return_code
 
 
-        @Slot(float, result=int)
-        def getSize(self, s):
-            size = int(s * 34)
-            if size <= 0:
-                return 1
-            else:
-                return size
 
-    @Slot(str, result=bool)
-    def getItalic(self, s):
-        if s.lower() == "italic":
-            return True
-        else:
-            return False
-
-    @Slot(str, result=bool)
-    def getBold(self, s):
-        if s.lower() == "bold":
-            return True
-        else:
-            return False
-
-    @Slot(str, result=bool)
-    def getUnderline(self, s):
-        if s.lower() == "underline":
-            return True
-        else:
-            return False
 
 
 

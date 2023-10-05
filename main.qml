@@ -4,16 +4,12 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 2.15
 
 ApplicationWindow {
-    width: 640
+    width: 720
     height: 480
     visible: true
     color: "lightcyan"
     title: qsTr("LED Screen Master")
 
-    // does not work -  type unknown
-//    Bridge {
-//            id: bridge
-//    }
 
     ColumnLayout {
         anchors.fill: parent
