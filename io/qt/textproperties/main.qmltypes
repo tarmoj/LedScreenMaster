@@ -33,12 +33,6 @@ Module {
             name: "send"
             type: "int"
             Parameter { name: "a1"; type: "int" }
-            Parameter { name: "a2"; type: "int" }
-        }
-        Method {
-            name: "send"
-            type: "int"
-            Parameter { name: "a1"; type: "int" }
             Parameter { name: "a2"; type: "QString" }
             Parameter { name: "a3"; type: "QString" }
         }

@@ -75,21 +75,6 @@
                             },
                             {
                                 "name": "a2",
-                                "type": "int"
-                            }
-                        ],
-                        "returnType": "int"
-                    },
-                    {
-                        "access": "public",
-                        "name": "send",
-                        "arguments": [
-                            {
-                                "name": "a1",
-                                "type": "int"
-                            },
-                            {
-                                "name": "a2",
                                 "type": "QString"
                             },
                             {
@@ -109,8 +94,7 @@
         "QT_MODULES": [
             "QtCore",
             "QtGui",
-            "QtQml",
-            "QtQuickControls2"
+            "QtQml"
         ],
         "inputFile": "/home/tarmo/tarmo/programm/qt-projects/led-screen-master/main.py"
     }

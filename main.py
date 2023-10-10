@@ -1,18 +1,19 @@
 # This Python file uses the following encoding: utf-8
 
 from pathlib import Path
-import sys, subprocess, json
+import sys, subprocess, json, re
 
 from PySide6.QtGui import QGuiApplication
 from PySide6.QtCore import QObject, Slot, Signal
 from PySide6.QtQml import QQmlApplicationEngine, QmlElement
-from PySide6.QtQuickControls2 import QQuickStyle
+#from PySide6.QtQuickControls2 import QQuickStyle
 
 
 commandFiles = ["1.json", "2.json", "3.json", "4.json", "5.json", "6.json"]
 
+# --port /dev/ttyUSB0
 execute = [
-'sixleds --port /dev/ttyUSB0 %options%  --set-page A --content  "%text%"',
+'sixleds  %options%  --set-page A --content  "%text%"',
 'sshpass -praspberry ssh -t pi@192.168.1.211 \'/home/pi/src/sixleds-0.5.0/sixleds/sixleds %options%  --set-page A --content  "%text%" \' ',
 'sshpass -praspberry ssh -t pi@192.168.1.212 \'/home/pi/src/sixleds-0.5.0/sixleds/sixleds %options% --set-page A --content  "%text%" \' ',
 'sshpass -praspberry ssh -t pi@192.168.1.213 \'/home/pi/src/sixleds-0.5.0/sixleds/sixleds %options% --set-page A --content  "%text%" \' ',
@@ -75,6 +76,25 @@ def execute_command(command):
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     return result.returncode, result.stdout, result.stderr
 
+def split_long_string(text):
+    words = re.split(r'\s(?=\w)', text)
+    result = []
+    current_substring = ""
+
+    for word in words:
+        if len(current_substring) + len(word) <= 26:
+            if current_substring:
+                current_substring += " "
+            current_substring += word
+        else:
+            result.append(current_substring)
+            current_substring = word
+
+    if current_substring:
+        result.append(current_substring)
+
+    return result
+
 
 @QmlElement
 class Bridge(QObject):
@@ -112,20 +132,48 @@ class Bridge(QObject):
 
 
 
-    @Slot(int, int, result=int)
-    def send(self, ledIndex, commandIndex, result=int):
-        commandLine = execute[ledIndex]
-        textToSend = commands[ledIndex][commandIndex]["text"]
-        commandLine = commandLine.replace("%text%", textToSend)
-        print(commandLine)
-        return_code, stdout, stderr = execute_command(commandLine)
-        #return_code = execute_command(commandLine)
-        print(return_code, stdout, stderr)
-        return return_code
+#    @Slot(int, int, result=int)
+#    def send(self, ledIndex, commandIndex, result=int):
+#        commandLine = execute[ledIndex]
+#        textToSend = commands[ledIndex][commandIndex]["text"]
+#        commandLine = commandLine.replace("%text%", textToSend)
+#        print(commandLine)
+#        return_code, stdout, stderr = execute_command(commandLine)
+#        #return_code = execute_command(commandLine)
+#        print(return_code, stdout, stderr)
+#        return return_code
+
+#märkmed. Pika käsu loogika:
+# sea lehtede sisu ükshaaval
+# sched ON: sixleds --set-schedule A --schedule-pages KL --start 0001010000 --end 9912302359
+# sched OFF: sixleds --set-schedule A --schedule-pages "" && sixleds --set-default A
+
 
     # overload
     @Slot(int, str, str, result=int)
     def send(self, ledIndex, textToSend, optionsText="", result=int):
+        commandLine = ""
+        if (len(textToSend)>=26):
+            messageParts = split_long_string(textToSend)
+            print(messageParts)
+            firstPage = "K"
+            commandLine = 'sixleds  {} '.format(optionsText)
+            playList = ""
+            for index in range(len(messageParts)):
+                print(messageParts[index])
+                page = chr(ord(firstPage) + index)
+                playList += page
+                # TODO -  test the command -  if it can set several pages in one sixleds command
+                # set text of page to messagePart[index]
+                #temporary test!
+                commandLine += ' --set-page {page} --content {text} '.format(page=page, text=messageParts[index])
+            #set preset, run the preset
+            # how to deal that it runs only once?
+            print(commandLine)
+            print(playList)
+            commandLine += ' && --set-schedule A && sixleds --schedule-pages {} '.format(playList)
+            print(commandLine)
+            return -1
         commandLine = execute[ledIndex]
         commandLine = commandLine.replace("%text%", textToSend)
         commandLine = commandLine.replace("%options%", optionsText)
