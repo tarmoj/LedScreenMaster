@@ -67,6 +67,40 @@
                     },
                     {
                         "access": "public",
+                        "name": "setDefaultPage",
+                        "arguments": [
+                            {
+                                "name": "a1",
+                                "type": "int"
+                            },
+                            {
+                                "name": "a2",
+                                "type": "QString"
+                            }
+                        ],
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "setSchedule",
+                        "arguments": [
+                            {
+                                "name": "a1",
+                                "type": "int"
+                            },
+                            {
+                                "name": "a2",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "a3",
+                                "type": "QString"
+                            }
+                        ],
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
                         "name": "send",
                         "arguments": [
                             {
@@ -79,6 +113,10 @@
                             },
                             {
                                 "name": "a3",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "a4",
                                 "type": "QString"
                             }
                         ],

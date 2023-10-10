@@ -4,7 +4,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 2.15
 
 ApplicationWindow {
-    width: 720
+    width: 800
     height: 480
     visible: true
     color: "lightcyan"

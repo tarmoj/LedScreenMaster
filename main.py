@@ -13,12 +13,22 @@ commandFiles = ["1.json", "2.json", "3.json", "4.json", "5.json", "6.json"]
 
 # --port /dev/ttyUSB0
 execute = [
-'sixleds  %options%  --set-page A --content  "%text%"',
+'sixleds  {options}  --set-page {page} --content  "{text}"',
 'sshpass -praspberry ssh -t pi@192.168.1.211 \'/home/pi/src/sixleds-0.5.0/sixleds/sixleds %options%  --set-page A --content  "%text%" \' ',
 'sshpass -praspberry ssh -t pi@192.168.1.212 \'/home/pi/src/sixleds-0.5.0/sixleds/sixleds %options% --set-page A --content  "%text%" \' ',
 'sshpass -praspberry ssh -t pi@192.168.1.213 \'/home/pi/src/sixleds-0.5.0/sixleds/sixleds %options% --set-page A --content  "%text%" \' ',
 'sshpass -pKontrabass8 ssh -t pi@192.168.1.214 \'sixleds %options% --set-page A --content  "%text%" \' ',
 'sshpass -pKontrabass8 ssh -t pi@192.168.1.215 \'sixleds %options% --set-page A --content  "%text%" \' ',
+]
+
+commandPrefix = [
+'sixleds',
+'sshpass -praspberry ssh -t pi@192.168.1.211',
+'sshpass -praspberry ssh -t pi@192.168.1.212',
+'sshpass -praspberry ssh -t pi@192.168.1.213'
+'sshpass -praspberry ssh -t pi@192.168.1.214'
+'sshpass -praspberry ssh -t pi@192.168.1.215'
+'sshpass -praspberry ssh -t pi@192.168.1.216'
 
 ]
 
@@ -132,26 +142,30 @@ class Bridge(QObject):
 
 
 
-#    @Slot(int, int, result=int)
-#    def send(self, ledIndex, commandIndex, result=int):
-#        commandLine = execute[ledIndex]
-#        textToSend = commands[ledIndex][commandIndex]["text"]
-#        commandLine = commandLine.replace("%text%", textToSend)
-#        print(commandLine)
-#        return_code, stdout, stderr = execute_command(commandLine)
-#        #return_code = execute_command(commandLine)
-#        print(return_code, stdout, stderr)
-#        return return_code
-
 #märkmed. Pika käsu loogika:
 # sea lehtede sisu ükshaaval
 # sched ON: sixleds --set-schedule A --schedule-pages KL --start 0001010000 --end 9912302359
 # sched OFF: sixleds --set-schedule A --schedule-pages "" && sixleds --set-default A
 
+    @Slot(int, str)
+    def setDefaultPage(self, ledIndex, defaultPage):
+        commandLine = commandPrefix[ledIndex] + " --set-default {}".format(defaultPage)
+        # TODO: move execute_command to class, send signals from there
+        execute_command(commandLine)
 
-    # overload
-    @Slot(int, str, str, result=int)
-    def send(self, ledIndex, textToSend, optionsText="", result=int):
+    @Slot(int, str, str)
+    def setSchedule(self, ledIndex, schedule, pages ):
+        #TODO: later use 'sixleds {commandContent}'.format(commandContent=...)
+        if (len(pages)>0):
+            commandLine = commandPrefix[ledIndex] + F" --set-schedule {schedule} --schedule-pages {pages} --start 0001010000 --end 9912302359 "
+        else:
+            commandLine = commandPrefix[ledIndex] + F" --set-schedule {schedule} --schedule-pages '' "
+
+        execute_command(commandLine)
+        # do we need to set a default page (empty?) after that?
+
+    @Slot(int, str, str, str,result=int)
+    def send(self, ledIndex, textToSend, optionsText="", page="A", result=int):
         commandLine = ""
         if (len(textToSend)>=26):
             messageParts = split_long_string(textToSend)
@@ -175,8 +189,8 @@ class Bridge(QObject):
             print(commandLine)
             return -1
         commandLine = execute[ledIndex]
-        commandLine = commandLine.replace("%text%", textToSend)
-        commandLine = commandLine.replace("%options%", optionsText)
+        commandLine = commandLine.format(text=textToSend, options=optionsText, page=page)
+        #commandLine = commandLine.replace("%options%", optionsText)
         print(commandLine)
         return_code, stdout, stderr = execute_command(commandLine)
         #return_code = execute_command(commandLine)

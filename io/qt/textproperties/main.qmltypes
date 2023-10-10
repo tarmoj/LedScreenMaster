@@ -30,11 +30,23 @@ Module {
             Parameter { name: "a1"; type: "int" }
         }
         Method {
+            name: "setDefaultPage"
+            Parameter { name: "a1"; type: "int" }
+            Parameter { name: "a2"; type: "QString" }
+        }
+        Method {
+            name: "setSchedule"
+            Parameter { name: "a1"; type: "int" }
+            Parameter { name: "a2"; type: "QString" }
+            Parameter { name: "a3"; type: "QString" }
+        }
+        Method {
             name: "send"
             type: "int"
             Parameter { name: "a1"; type: "int" }
             Parameter { name: "a2"; type: "QString" }
             Parameter { name: "a3"; type: "QString" }
+            Parameter { name: "a4"; type: "QString" }
         }
     }
 }
