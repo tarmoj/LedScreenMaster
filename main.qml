@@ -5,7 +5,7 @@ import QtQuick.Layouts 2.15
 
 ApplicationWindow {
     width: 800
-    height: 480
+    height: 900
     visible: true
     color: "lightcyan"
     title: qsTr("LED Screen Master")
@@ -41,6 +41,7 @@ ApplicationWindow {
 
         Column {
             Layout.fillWidth: true
+            spacing: 10
             //Layout.fillHeight: true
 
             Repeater {

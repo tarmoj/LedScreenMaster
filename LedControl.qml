@@ -4,7 +4,7 @@ import QtQuick.Layouts 2.15
 
 Item {
     width: 600
-    height: 100
+    height: 70
     property int ledNumber: 1
     property var commands: bridge ? bridge.getCommands(ledNumber-1).split("||") : []
     property var options: bridge ? bridge.getOptions(ledNumber-1).split("||") : []
