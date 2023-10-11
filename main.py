@@ -1,17 +1,16 @@
 # This Python file uses the following encoding: utf-8
 
-from pathlib import Path
 import sys, subprocess, json, re
 
-from PySide6.QtGui import QGuiApplication
-from PySide6.QtCore import QObject, Slot, Signal
-from PySide6.QtQml import QQmlApplicationEngine, QmlElement
-#from PySide6.QtQuickControls2 import QQuickStyle
+from PySide2.QtGui import QGuiApplication
+from PySide2.QtCore import QObject, Slot, Signal
+from PySide2.QtQml import QQmlApplicationEngine
+#from PySide2.QtQuickControls2 import QQuickStyle
 
 
 commandFiles = ["1.json", "2.json", "3.json", "4.json", "5.json", "6.json"]
 
-# --port /dev/ttyUSB0
+# --port /dev/ttyUSB0 #mac: --port /dev/tty.usbserial-0001
 execute = [
 'sixleds  {options}  --set-page {page} --content  "{text}"',
 'sshpass -praspberry ssh -t pi@192.168.1.211 \'/home/pi/src/sixleds-0.5.0/sixleds/sixleds %options%  --set-page A --content  "%text%" \' ',
@@ -63,10 +62,6 @@ commands = [
 
 ] # end commands
 
-#necessary to understand the decorations:
-QML_IMPORT_NAME = "io.qt.textproperties"
-QML_IMPORT_MAJOR_VERSION = 1
-
 
 def updateCommands():
 
@@ -81,8 +76,6 @@ def updateCommands():
 #            print(line)
 
 def execute_command(command):
-    #result = os.system(command)
-    #return result
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     return result.returncode, result.stdout, result.stderr
 
@@ -106,7 +99,6 @@ def split_long_string(text):
     return result
 
 
-@QmlElement
 class Bridge(QObject):
 
     commandsUpdated = Signal()
@@ -199,10 +191,6 @@ class Bridge(QObject):
         return return_code
 
 
-
-
-
-
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
 
@@ -215,8 +203,8 @@ if __name__ == "__main__":
     bridge = Bridge()
     context.setContextProperty("bridge", bridge)
 
-    qml_file = Path(__file__).resolve().parent / "main.qml"
+    qml_file = "main.qml" # Path(__file__).resolve().parent / "main.qml"
     engine.load(qml_file)
     if not engine.rootObjects():
         sys.exit(-1)
-    sys.exit(app.exec())
+    sys.exit(app.exec_())

@@ -1,10 +1,10 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Layouts 2.15
+import QtQuick.Layouts 1.15
 
 Item {
     width: 600
-    height: 70
+    height: 80
     property int ledNumber: 1
     property var commands: bridge ? bridge.getCommands(ledNumber-1).split("||") : []
     property var options: bridge ? bridge.getOptions(ledNumber-1).split("||") : []
@@ -26,7 +26,7 @@ Item {
 
             SpinBox {
                 id: commandNumberSpinBox
-                Layout.preferredWidth: 60
+                Layout.preferredWidth: 120
                 from: 1
                 to: commands.length
                 value: 1
@@ -54,7 +54,7 @@ Item {
 
             ComboBox {
                 id: pageCombobox
-                Layout.preferredWidth: 60
+                Layout.preferredWidth: 80
                 model: ["A", "B", "C", "D", "etc"]
                 editable: true
             }
@@ -89,7 +89,7 @@ Item {
 
             ComboBox {
                 id: defaultPageCombobox
-                Layout.preferredWidth: 60
+                Layout.preferredWidth: 80
                 model: ["A", "B", "C", "D", "etc"]
                 editable: true
             }
@@ -104,7 +104,7 @@ Item {
 
             ComboBox {
                 id: scheduleCombobox
-                Layout.preferredWidth: 60
+                Layout.preferredWidth: 80
                 model: ["A", "B", "C", "D", "E"]
             }
 
@@ -112,7 +112,7 @@ Item {
 
             TextField {
                 id: schdulePagesField
-                Layout.preferredWidth: 60
+                Layout.preferredWidth: 80
                 text: ""
             }
 

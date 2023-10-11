@@ -1,14 +1,15 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Layouts 2.15
+import QtQuick.Layouts 1.15
 
 ApplicationWindow {
-    width: 800
-    height: 900
+    width: 1024
+    height: 860
     visible: true
     color: "lightcyan"
-    title: qsTr("LED Screen Master")
+    title: qsTr("LED Screen Master") + " " +version
+    property string version: "0.2.1"
 
     Connections {
         target: bridge
@@ -35,13 +36,13 @@ ApplicationWindow {
 
         Label {
             Layout.preferredHeight: 20
-            text: "LED Screen Master";
+            text: "LED Screen Master " + version;
             font.pointSize: 14; font.bold: true
         }
 
         Column {
             Layout.fillWidth: true
-            spacing: 10
+            spacing: 20
             //Layout.fillHeight: true
 
             Repeater {
