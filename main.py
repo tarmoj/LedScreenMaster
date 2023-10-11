@@ -21,7 +21,7 @@ execute = [
 ]
 
 commandPrefix = [
-'sixleds',
+'sixleds --port /dev/tty.usbserial-0001',
 'sshpass -praspberry ssh -t pi@192.168.1.211',
 'sshpass -praspberry ssh -t pi@192.168.1.212',
 'sshpass -praspberry ssh -t pi@192.168.1.213'
