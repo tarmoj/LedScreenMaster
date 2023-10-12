@@ -72,7 +72,7 @@ Item {
             Button {
                 id: clearButton
                 text: "Tühjenda"
-                onClicked: bridge.send(ledNumber-1, " ", "")
+                onClicked: bridge.send(ledNumber-1, " ", "", pageCombobox.currentText)
 
             }
 
