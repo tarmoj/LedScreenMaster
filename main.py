@@ -27,7 +27,7 @@ commandPrefix = [
 'sshpass -praspberry ssh -t pi@192.168.1.213',
 'sshpass -pKontrabass8 ssh -t pi@192.168.1.214 \'sixleds {command}\' ',
 'sshpass -praspberry ssh -t pi@192.168.1.215',
-'$HOME/Downloads/sixleds-0.5.0/sixlelds --port /dev/tty.usbserial-0001 {command}' # local machine
+'$HOME/Downloads/sixleds-0.5.0/sixlelds/sixleds --port /dev/tty.usbserial-0001 {command}' # local machine
 ]
 
 #define commands by leds, each led has array of dictionaries (objects)
