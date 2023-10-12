@@ -9,7 +9,7 @@ ApplicationWindow {
     visible: true
     color: "lightcyan"
     title: qsTr("LED Screen Master") + " " +version
-    property string version: "0.2.1"
+    property string version: "0.2.2"
 
     Connections {
         target: bridge
@@ -35,7 +35,7 @@ ApplicationWindow {
         spacing: 10
 
         Label {
-            Layout.preferredHeight: 20
+            Layout.preferredHeight: 30
             text: "LED Screen Master " + version;
             font.pointSize: 14; font.bold: true
         }

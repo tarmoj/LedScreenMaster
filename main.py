@@ -105,7 +105,7 @@ class Bridge(QObject):
         print(command)
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
         print(result.returncode)
-        resultString="OK\n" if result.returncode==0 else "Error."
+        resultString="OK\n" if result.returncode==0 else "Error in: "+command+"\n"
         self.consoleOutput.emit(resultString + result.stdout + result.stderr)
         return result.returncode
 
@@ -154,9 +154,9 @@ class Bridge(QObject):
     def setSchedule(self, ledIndex, schedule, pages ):
         #TODO: later use 'sixleds {commandContent}'.format(commandContent=...)
         if (len(pages)>0):
-            options = F" --set-schedule {schedule} --schedule-pages {pages} --start 0001010000 --end 9912302359 "
+            options = F' --set-schedule {schedule} --schedule-pages {pages} --start 0001010000 --end 9912302359 '
         else:
-            options = commandPrefix[ledIndex] + F" --set-schedule {schedule} --schedule-pages '' "
+            options = F' --set-schedule {schedule} --schedule-pages "" '
 
 
         commandLine = commandPrefix[ledIndex].format(command=options)
@@ -165,32 +165,12 @@ class Bridge(QObject):
 
     @Slot(int, str, str, str,result=int)
     def send(self, ledIndex, textToSend, optionsText="", page="A", result=int):
-        commandLine = ""
-        if (len(textToSend)>=26):
-            messageParts = split_long_string(textToSend)
-            print(messageParts)
-            firstPage = "K"
-            commandLine = 'sixleds  {} '.format(optionsText)
-            playList = ""
-            for index in range(len(messageParts)):
-                print(messageParts[index])
-                page = chr(ord(firstPage) + index)
-                playList += page
-                # TODO -  test the command -  if it can set several pages in one sixleds command
-                # set text of page to messagePart[index]
-                #temporary test!
-                commandLine += ' --set-page {page} --content {text} '.format(page=page, text=messageParts[index])
-            #set preset, run the preset
-            # how to deal that it runs only once?
-            print(commandLine)
-            print(playList)
-            commandLine += ' && --set-schedule A && sixleds --schedule-pages {} '.format(playList)
-            print(commandLine)
-            return -1
-        commandLine = execute[ledIndex]
-        commandLine = commandLine.format(text=textToSend, options=optionsText, page=page)
-        return_code = self.execute_command(commandLine)
-        return return_code
+        options = ' {options} --set-page {page} --content "{text}"'.format(text=textToSend, options=optionsText, page=page)
+        commandLine = commandPrefix[ledIndex].format(command=options)
+        returnCode = self.execute_command(commandLine)
+        if (returnCode==0):
+            self.setSchedule(ledIndex, "A", page)
+        return returnCode
 
 
 if __name__ == "__main__":
