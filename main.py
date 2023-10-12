@@ -12,25 +12,22 @@ commandFiles = ["1.json", "2.json", "3.json", "4.json", "5.json", "6.json"]
 
 # --port /dev/ttyUSB0 #mac: --port /dev/tty.usbserial-0001
 execute = [
-'sshpass -praspberry ssh -t pi@192.168.1.211 \'sixleds {options} --set-page A --content  "{text}" \' ',
-'sshpass -praspberry ssh -t pi@192.168.1.212 \'sixleds {options} --set-page A --content  "{text}" \' ',
-'sshpass -praspberry ssh -t pi@192.168.1.213 \'sixleds {options} --set-page A --content  "{text}" \' ',
-'sshpass -pKontrabass8 ssh -t pi@192.168.1.214 \'sixleds {options} --set-page A --content  "{text}"  \' ',
-'sshpass -pKontrabass8 ssh -t pi@192.168.1.215 \'sixleds {options} --set-page A --content  "{text}" \' ',
+'sshpass -praspberry ssh -t pi@192.168.1.211 \'sixleds {options} --set-page {page} --content  "{text}" \' ',
+'sshpass -praspberry ssh -t pi@192.168.1.212 \'sixleds {options} --set-page {page} --content  "{text}" \' ',
+'sshpass -praspberry ssh -t pi@192.168.1.213 \'sixleds {options} --set-page {page} --content  "{text}" \' ',
+'sshpass -pKontrabass8 ssh -t pi@192.168.1.214 \'sixleds {options} --set-page {page} --content  "{text}"  \' ',
+'sshpass -pKontrabass8 ssh -t pi@192.168.1.215 \'sixleds {options} --set-page {page} --content  "{text}" \' ',
 'sixleds  {options}  --set-page {page} --content  "{text}"',
 
 ]
 
 commandPrefix = [
-'sshpass -praspberry ssh -t pi@192.168.1.211',
+'sshpass -praspberry ssh -t pi@192.168.1.211 ',
 'sshpass -praspberry ssh -t pi@192.168.1.212',
 'sshpass -praspberry ssh -t pi@192.168.1.213',
-'sshpass -pKontrabass8 ssh -t pi@192.168.1.214',
+'sshpass -pKontrabass8 ssh -t pi@192.168.1.214 \'sixleds {command}\' ',
 'sshpass -praspberry ssh -t pi@192.168.1.215',
-'sshpass -praspberry ssh -t pi@192.168.1.216',
-'sixleds',
-
-
+'sixleds {command}' # local machine
 ]
 
 #define commands by leds, each led has array of dictionaries (objects)
@@ -77,9 +74,7 @@ def updateCommands():
 #        for line in data:
 #            print(line)
 
-def execute_command(command):
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    return result.returncode, result.stdout, result.stderr
+
 
 def split_long_string(text):
     words = re.split(r'\s(?=\w)', text)
@@ -105,6 +100,14 @@ class Bridge(QObject):
 
     commandsUpdated = Signal()
     consoleOutput = Signal(str)
+
+    def execute_command(self, command):
+        print(command)
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        print(result.returncode)
+        resultString="OK\n" if result.returncode==0 else "Error."
+        self.consoleOutput.emit(resultString + result.stdout + result.stderr)
+        return result.returncode
 
     @Slot()
     def reload(self):
@@ -143,19 +146,21 @@ class Bridge(QObject):
 
     @Slot(int, str)
     def setDefaultPage(self, ledIndex, defaultPage):
-        commandLine = commandPrefix[ledIndex] + " --set-default {}".format(defaultPage)
+        commandLine = commandPrefix[ledIndex].format(command=" --set-default {}".format(defaultPage))
         # TODO: move execute_command to class, send signals from there
-        execute_command(commandLine)
+        self.execute_command(commandLine)
 
     @Slot(int, str, str)
     def setSchedule(self, ledIndex, schedule, pages ):
         #TODO: later use 'sixleds {commandContent}'.format(commandContent=...)
         if (len(pages)>0):
-            commandLine = commandPrefix[ledIndex] + F" --set-schedule {schedule} --schedule-pages {pages} --start 0001010000 --end 9912302359 "
+            options = F" --set-schedule {schedule} --schedule-pages {pages} --start 0001010000 --end 9912302359 "
         else:
-            commandLine = commandPrefix[ledIndex] + F" --set-schedule {schedule} --schedule-pages '' "
+            options = commandPrefix[ledIndex] + F" --set-schedule {schedule} --schedule-pages '' "
 
-        execute_command(commandLine)
+
+        commandLine = commandPrefix[ledIndex].format(command=options)
+        self.execute_command(commandLine)
         # do we need to set a default page (empty?) after that?
 
     @Slot(int, str, str, str,result=int)
@@ -184,12 +189,7 @@ class Bridge(QObject):
             return -1
         commandLine = execute[ledIndex]
         commandLine = commandLine.format(text=textToSend, options=optionsText, page=page)
-        #commandLine = commandLine.replace("%options%", optionsText)
-        print(commandLine)
-        return_code, stdout, stderr = execute_command(commandLine)
-        #return_code = execute_command(commandLine)
-        print(return_code)
-        self.consoleOutput.emit(stdout + stderr)
+        return_code = self.execute_command(commandLine)
         return return_code
 
 
