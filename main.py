@@ -11,15 +11,15 @@ from PySide2.QtQml import QQmlApplicationEngine
 commandFiles = ["1.json", "2.json", "3.json", "4.json", "5.json", "6.json"]
 
 # --port /dev/ttyUSB0 #mac: --port /dev/tty.usbserial-0001
-execute = [
-'sshpass -praspberry ssh -t pi@192.168.1.211 \'sixleds {options} --set-page {page} --content  "{text}" \' ',
-'sshpass -praspberry ssh -t pi@192.168.1.212 \'sixleds {options} --set-page {page} --content  "{text}" \' ',
-'sshpass -praspberry ssh -t pi@192.168.1.213 \'sixleds {options} --set-page {page} --content  "{text}" \' ',
-'sshpass -pKontrabass8 ssh -t pi@192.168.1.214 \'sixleds {options} --set-page {page} --content  "{text}"  \' ',
-'sshpass -pKontrabass8 ssh -t pi@192.168.1.215 \'sixleds {options} --set-page {page} --content  "{text}" \' ',
-'sixleds  {options}  --set-page {page} --content  "{text}"',
+#execute = [
+#'sshpass -praspberry ssh -t pi@192.168.1.211 \'sixleds {options} --set-page {page} --content  "{text}" \' ',
+#'sshpass -praspberry ssh -t pi@192.168.1.212 \'sixleds {options} --set-page {page} --content  "{text}" \' ',
+#'sshpass -praspberry ssh -t pi@192.168.1.213 \'sixleds {options} --set-page {page} --content  "{text}" \' ',
+#'sshpass -pKontrabass8 ssh -t pi@192.168.1.214 \'sixleds {options} --set-page {page} --content  "{text}"  \' ',
+#'sshpass -pKontrabass8 ssh -t pi@192.168.1.215 \'sixleds {options} --set-page {page} --content  "{text}" \' ',
+#'sixleds  {options}  --set-page {page} --content  "{text}"',
 
-]
+#]
 
 commandPrefix = [
 'sshpass -praspberry ssh -t pi@192.168.1.211 ',
@@ -27,7 +27,7 @@ commandPrefix = [
 'sshpass -praspberry ssh -t pi@192.168.1.213',
 'sshpass -pKontrabass8 ssh -t pi@192.168.1.214 \'sixleds {command}\' ',
 'sshpass -praspberry ssh -t pi@192.168.1.215',
-'sixleds {command}' # local machine
+'$HOME/Downloads/sixleds-0.5.0/sixlelds --port /dev/tty.usbserial-0001 {command}' # local machine
 ]
 
 #define commands by leds, each led has array of dictionaries (objects)
