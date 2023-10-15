@@ -4,8 +4,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
 ApplicationWindow {
-    width: 1024
-    height: 860
+    width: 1200
+    height: 920
     visible: true
     color: "lightcyan"
     title: qsTr("LED Screen Master") + " " +version
@@ -40,10 +40,9 @@ ApplicationWindow {
             font.pointSize: 14; font.bold: true
         }
 
-        Column {
+        ColumnLayout {
             Layout.fillWidth: true
             spacing: 20
-            //Layout.fillHeight: true
 
             Repeater {
                 id: repeater
@@ -51,6 +50,7 @@ ApplicationWindow {
 
                 LedControl {
                     ledNumber: index+1
+                    Layout.preferredHeight: 100
                 }
             }
         }

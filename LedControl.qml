@@ -3,8 +3,9 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
 Item {
+    id: ledControl
     width: 600
-    height: 80
+    height: 100
     property int ledNumber: 1
     property var commands: bridge ? bridge.getCommands(ledNumber-1).split("||") : []
     property var options: bridge ? bridge.getOptions(ledNumber-1).split("||") : []
@@ -35,14 +36,25 @@ Item {
                 onValueChanged: currentIndex = value-1
             }
 
-            TextField {
-                id: commandsWidget
 
-                Layout.preferredWidth: 200
 
-                text: commands[currentIndex] || ""
+            ScrollView {
+                id: view
+                Layout.preferredWidth: 400
+                Layout.preferredHeight: 60
+                Layout.alignment: Qt.AlignTop
+                TextArea {
+                    id: commandsWidget
+                    text: commands[currentIndex] || ""
+                    background: Rectangle { color: "white"; border.color: "darkgrey"; radius: 4  }
+
+                }
 
             }
+
+
+
+
 
             TextField {
                 id: optionsField
