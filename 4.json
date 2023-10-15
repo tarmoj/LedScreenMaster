@@ -1,7 +1,13 @@
 [
-    {"text":"Käsk4-1", "options": "--leading-fx A --lagging-fx K" },
+    {"text":"Mis vahet seal on, distantsilt pole midagi aru saada                                                                 "},
+	{"text":"Mida ta teeb?Tea,kas üldse kuskile kostan?                                                                                 "},
+	{"text":"Paus                                                                                                           "},
+	{"text":"Kus me oleme? Tempo-tempo                 kolm ja neli ja            Ei kuule mitte midagi                                      "},
+	{"text":"Viiulil on c''' kõrge                                                                                                    "},
+	{"text":"Jätaks kaks lööki vahele, saab ehk kokku…                                                                             "},
+	{"text":"crescendo                                           Võimas                                                                     "},
+	{"text":"Kõht on ilgelt tühi…                                                                                                         "},
+    {"text":"tühi                                                                                                                     "},
+	{"text":"Juta on ka siin                                                                                                                "}
     
-    {"text":"Käsk4-2" }
-    
-
 ] 

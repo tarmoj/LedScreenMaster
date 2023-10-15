@@ -11,6 +11,10 @@ Item {
     property var options: bridge ? bridge.getOptions(ledNumber-1).split("||") : []
     property int currentIndex: commandNumberSpinBox.value-1
 
+    property var pages: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+    "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+
     ColumnLayout {
         anchors.fill: parent
         RowLayout {
@@ -68,7 +72,7 @@ Item {
             ComboBox {
                 id: pageCombobox
                 Layout.preferredWidth: 80
-                model: ["A", "B", "C", "D", "etc"]
+                model: pages
                 editable: true
             }
 
@@ -110,7 +114,7 @@ Item {
             ComboBox {
                 id: defaultPageCombobox
                 Layout.preferredWidth: 80
-                model: ["A", "B", "C", "D", "etc"]
+                model: pages
                 editable: true
             }
 
@@ -139,6 +143,11 @@ Item {
             Button {
                 text: "Saada"
                 onClicked: bridge.setSchedule(ledNumber-1, scheduleCombobox.currentText, schdulePagesField.text )
+            }
+
+            Button {
+                text: "Peata"
+                onClicked: bridge.setSchedule(ledNumber-1, scheduleCombobox.currentText, "" )
             }
 
 

@@ -144,7 +144,6 @@ class Bridge(QObject):
 
     @Slot(int, str, str)
     def setSchedule(self, ledIndex, schedule, pages ):
-        #TODO: later use 'sixleds {commandContent}'.format(commandContent=...)
         if (len(pages)>0):
             options = F' --set-schedule {schedule} --schedule-pages {pages} --start 0001010000 --end 9912302359 '
         else:
@@ -169,8 +168,14 @@ class Bridge(QObject):
         options = ' --delete-all '
         commandLine = commandPrefix[ledIndex].format(command=options)
         returnCode = self.execute_command(commandLine)
+        #test: fill pages:
+        self.fillPages(ledIndex)
+
         return returnCode
 
+    def fillPages(self, ledIndex):
+        for page in ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]:
+            self.send(ledIndex, "Leht "+page, "", page)
 
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
