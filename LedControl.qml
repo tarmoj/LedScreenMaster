@@ -76,6 +76,13 @@ Item {
 
             }
 
+            Button {
+                id: resetButton
+                text: "Factory reset"
+                onClicked: bridge.deleteAll(ledNumber-1)
+
+            }
+
             Item {Layout.fillWidth: true}
 
 

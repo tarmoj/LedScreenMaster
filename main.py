@@ -168,8 +168,15 @@ class Bridge(QObject):
         options = ' {options} --set-page {page} --content "{text}"'.format(text=textToSend, options=optionsText, page=page)
         commandLine = commandPrefix[ledIndex].format(command=options)
         returnCode = self.execute_command(commandLine)
-        if (returnCode==0):
-            self.setSchedule(ledIndex, "A", page)
+        #if (returnCode==0):
+        #    self.setSchedule(ledIndex, "A", page)
+        return returnCode
+
+    @Slot(int,result=int)
+    def deleteAll(self, ledIndex):
+        options = ' --delete-all '
+        commandLine = commandPrefix[ledIndex].format(command=options)
+        returnCode = self.execute_command(commandLine)
         return returnCode
 
 
