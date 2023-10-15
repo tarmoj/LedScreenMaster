@@ -45,6 +45,7 @@ Item {
                 Layout.alignment: Qt.AlignTop
                 TextArea {
                     id: commandsWidget
+                    wrapMode: TextEdit.WordWrap
                     text: commands[currentIndex] || ""
                     background: Rectangle { color: "white"; border.color: "darkgrey"; radius: 4  }
 
@@ -77,7 +78,7 @@ Item {
             Button {
                 id: sendButton
                 text: "Saada"
-                onClicked: bridge.send(ledNumber-1, commandsWidget.displayText, optionsField.text, pageCombobox.currentText ) //bridge.send(ledNumber-1, currentIndex) // maybe we need also a setter to the´pyhon commands dict?
+                onClicked: bridge.send(ledNumber-1, commandsWidget.text, optionsField.text, pageCombobox.currentText ) //bridge.send(ledNumber-1, currentIndex) // maybe we need also a setter to the´pyhon commands dict?
 
             }
 
