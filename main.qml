@@ -9,7 +9,7 @@ ApplicationWindow {
     visible: true
     color: "lightcyan"
     title: qsTr("LED Screen Master") + " " +version
-    property string version: "0.2.5"
+    property string version: "0.2.6"
 
     Connections {
         target: bridge

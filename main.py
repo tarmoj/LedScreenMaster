@@ -95,11 +95,23 @@ class Bridge(QObject):
 
     def execute_command(self, command):
         print(command)
-        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        result = subprocess.run(command + " &", shell=True, capture_output=False, text=True) # this kind of works but no reasonable output
+        #result = subprocess.run(command.split(" "), check=True)
         print(result.returncode)
         resultString="OK\n" if result.returncode==0 else "Error in: "+command+"\n"
-        self.consoleOutput.emit(resultString + result.stdout + result.stderr)
+        #self.consoleOutput.emit(resultString + result.stdout + result.stderr)
+        #self.consoleOutput.emit(resultString)
         return result.returncode
+#        try:
+#            result = subprocess.run(command, check=True)
+#            self.consoleOutput.emit(command + " OK\n");
+#            return result.returncode #, result.stdout, result.stderr
+#        except Exception as e:
+#            print(e)
+#            self.consoleOutput.emit("Error: " + str(e));
+#            return -1
+
+
 
     @Slot()
     def reload(self):
