@@ -147,7 +147,10 @@ Item {
 
             Button {
                 text: "Peata"
-                onClicked: bridge.setSchedule(ledNumber-1, scheduleCombobox.currentText, "" )
+                onClicked: {
+                    schdulePagesField.text = ""
+                    bridge.setSchedule(ledNumber-1, scheduleCombobox.currentText, "" )
+                }
             }
 
             Item {Layout.preferredWidth: 20}
