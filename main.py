@@ -55,7 +55,6 @@ commands = [
 
 
 def updateCommands():
-
     for i in range(6):
         fileName = commandFiles[i]
         f = open(fileName)
@@ -93,9 +92,11 @@ class Bridge(QObject):
     commandsUpdated = Signal()
     consoleOutput = Signal(str)
 
-    def execute_command(self, command):
+    def execute_command(self, command, wait=False):
         print(command)
-        result = subprocess.run(command + " &", shell=True, capture_output=False, text=True) # this kind of works but no reasonable output
+        if not wait:
+            command += " &"
+        result = subprocess.run(command, shell=True, capture_output=False, text=True) # this kind of works but no reasonable output
         #result = subprocess.run(command.split(" "), check=True)
         print(result.returncode)
         resultString="OK\n" if result.returncode==0 else "Error in: "+command+"\n"
@@ -167,7 +168,10 @@ class Bridge(QObject):
         # do we need to set a default page (empty?) after that?
 
     @Slot(int, str, str, str,result=int)
-    def send(self, ledIndex, textToSend, optionsText="", page="A", result=int):
+    def send(self, ledIndex, textToSend, optionsText="", page="A"):
+        if len(textToSend) > 210:
+            textToSend=textToSend[:210]
+            print("Liiga pikk tekst! " + textToSend)
         options = ' {options} --set-page {page} --content "{text}"'.format(text=textToSend, options=optionsText, page=page)
         commandLine = commandPrefix[ledIndex].format(command=options)
         returnCode = self.execute_command(commandLine)
@@ -181,13 +185,28 @@ class Bridge(QObject):
         commandLine = commandPrefix[ledIndex].format(command=options)
         returnCode = self.execute_command(commandLine)
         #test: fill pages:
-        self.fillPages(ledIndex)
+        #self.fillPages(ledIndex)
 
         return returnCode
 
     def fillPages(self, ledIndex):
         for page in ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]:
             self.send(ledIndex, "Leht "+page, "", page)
+
+
+    @Slot(int)
+    def loadPage(self, ledIndex):
+        for i in range(1):
+            fileName = "pages{}.json".format(ledIndex+1)
+            f = open(fileName)
+            data = json.load(f)
+            for page, text in data.items():
+                print(page, text)
+                options = ' --set-page {page} --content "{text}"'.format(text=text, page=page)
+                commandLine = commandPrefix[ledIndex].format(command=options)
+                self.execute_command(commandLine, wait=True)
+
+
 
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)

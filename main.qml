@@ -56,9 +56,12 @@ ApplicationWindow {
         }
 
 
-        Button {
-            text: "Uuenda"
-            onClicked: bridge.reload()
+        Row {
+            spacing: 5
+            Button {
+                text: "Uuenda"
+                onClicked: bridge.reload()
+            }
         }
 
         ScrollView {

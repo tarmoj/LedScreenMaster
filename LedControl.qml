@@ -150,6 +150,13 @@ Item {
                 onClicked: bridge.setSchedule(ledNumber-1, scheduleCombobox.currentText, "" )
             }
 
+            Item {Layout.preferredWidth: 20}
+
+            Button {
+                text: "Lae lehed"
+                onClicked: bridge.loadPage(ledNumber-1)
+            }
+
 
         }
     }
