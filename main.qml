@@ -11,6 +11,7 @@ ApplicationWindow {
     title: qsTr("LED Screen Master") + " " +version
     property string version: "0.2.6"
 
+
     Connections {
         target: bridge
 
@@ -33,6 +34,7 @@ ApplicationWindow {
         anchors.fill: parent
         anchors.margins: 10
         spacing: 10
+        scale: 0.9
 
         Label {
             Layout.preferredHeight: 30
