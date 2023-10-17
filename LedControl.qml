@@ -148,8 +148,8 @@ Item {
             Button {
                 text: "Peata"
                 onClicked: {
-                    schdulePagesField.text = ""
-                    bridge.setSchedule(ledNumber-1, scheduleCombobox.currentText, "" )
+                    schdulePagesField.text = "A"
+                    bridge.setSchedule(ledNumber-1, scheduleCombobox.currentText, "A" )
                 }
             }
 

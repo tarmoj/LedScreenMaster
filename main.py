@@ -127,6 +127,8 @@ class Bridge(QObject):
         for element in commands[ledIndex]:
             if ("text" in element.keys()):
                 commandString += element["text"]+"||"
+            else:
+                commandString += " || "
 
         if commandString.endswith("||"):
             commandString = commandString[:-2]
@@ -138,6 +140,8 @@ class Bridge(QObject):
         for element in commands[ledIndex]:
                 if ("options" in element.keys()):
                     optionsString += element["options"]+"||"
+                else:
+                    optionsString += " || "
 
         if optionsString.endswith("||"):
             optionsString = optionsString[:-2]
@@ -196,7 +200,7 @@ class Bridge(QObject):
 
 
     @Slot(int)
-    def loadPage(self, ledIndex):
+    def loadPage_old(self, ledIndex):
         for i in range(1):
             fileName = "pages{}.json".format(ledIndex+1)
             f = open(fileName)
@@ -206,6 +210,18 @@ class Bridge(QObject):
                 options = ' --set-page {page} --content "{text}"'.format(text=text, page=page)
                 commandLine = commandPrefix[ledIndex].format(command=options)
                 self.execute_command(commandLine, wait=True)
+
+
+    @Slot(int)
+    def loadPage(self, ledIndex):
+        for line in commands[ledIndex]:
+            if ("options" in line.keys()):
+                options = line["options"]
+            else:
+                options = ""
+            commandContent = ' {options} --set-page {page} --content "{text}"'.format(options=options, text=line["text"], page=line["page"])
+            commandLine = commandPrefix[ledIndex].format(command=commandContent)
+            self.execute_command(commandLine, wait=True)
 
 
 
