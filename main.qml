@@ -66,25 +66,25 @@ ApplicationWindow {
             }
         }
 
-        ScrollView {
-            Layout.margins: 10
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+//        ScrollView {
+//            Layout.margins: 10
+//            Layout.fillWidth: true
+//            Layout.fillHeight: true
 
-            TextArea {
-                id: consoleArea
+//            TextArea {
+//                id: consoleArea
 
-                background: Rectangle {
-                    color: "#F7F7F7"
-                    border.color: "darkgrey"
-                    radius: 3
-                }
+//                background: Rectangle {
+//                    color: "#F7F7F7"
+//                    border.color: "darkgrey"
+//                    radius: 3
+//                }
 
-                placeholderText: "Commands output"
+//                placeholderText: "Commands output"
 
 
-            }
-        }
+//            }
+//        }
 
 
     }

@@ -18,7 +18,7 @@ commandPrefix = [
 'sshpass -praspberry ssh -t pi@192.168.1.212 \'sixleds {command}\' ',
 'sshpass -praspberry ssh -t pi@192.168.1.213 \'sixleds {command}\' ',
 'sshpass -pKontrabass8 ssh -t pi@192.168.1.214 \'sixleds {command}\' ',
-'sshpass -pK?ntrabass ssh -t tarmo@192.168.1.211 \'sixleds {command}\'',
+'sshpass -pK?ntrabass ssh -t tarmo@192.168.1.215 \'sixleds {command}\'',
 'sshpass -pRisset10 ssh -t tarmo@192.168.1.199 \'/home/tarmo/.local/bin/sixleds --port /dev/ttyUSB1 {command}\' ',
 #'sixleds --port /dev/ttyUSB0 {command}' # central machine
 ]
