@@ -23,6 +23,16 @@ commandPrefix = [
 #'sixleds --port /dev/ttyUSB0 {command}' # central machine
 ]
 
+# Change these for actual playlists:
+schedulePlaylists = [
+["AB", "CD"],
+["EF", "GH"],
+["IJ", "KL"],
+["MN", "OP"],
+["RS", "TU"],
+["VW", "XY"]
+]
+
 #define commands by leds, each led has array of dictionaries (objects)
 #definitions here for testing
 commands = [
@@ -93,6 +103,8 @@ class Bridge(QObject):
     commandsUpdated = Signal()
     consoleOutput = Signal(str)
 
+
+
     def execute_command(self, command, wait=False):
         print(command)
         if not wait:
@@ -113,7 +125,9 @@ class Bridge(QObject):
 #            self.consoleOutput.emit("Error: " + str(e));
 #            return -1
 
-
+    @Slot(int, result="QVariant") # QVariant would be right way for getCommands and getOptions. Or rather pass it all as an object...
+    def getPlaylist(self, ledIndex):
+        return schedulePlaylists[ledIndex]
 
     @Slot()
     def reload(self):

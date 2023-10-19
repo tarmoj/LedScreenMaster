@@ -124,32 +124,44 @@ Item {
                 onClicked: bridge.setDefaultPage(ledNumber-1, defaultPageCombobox.currentText)
             }
 
+            Item {Layout.preferredWidth: 40}
+
             Label {text: "Järgnevus:" }
 
+//            ComboBox {
+//                id: scheduleCombobox
+//                Layout.preferredWidth: 80
+//                model: ["A", "B", "C", "D", "E"]
+//            }
+
+//            Label {text: "Lehed (tühjistamiseks tühi) :" }
+
+//            TextField {
+//                id: schdulePagesField
+//                Layout.preferredWidth: 80
+//                text: ""
+//            }
+
             ComboBox {
-                id: scheduleCombobox
-                Layout.preferredWidth: 80
-                model: ["A", "B", "C", "D", "E"]
-            }
+                id: playlistComboBox
+                Layout.preferredWidth: 160
+                model: bridge? bridge.getPlaylist(ledNumber-1) : ["A"]
 
-            Label {text: "Lehed (tühjistamiseks tühi) :" }
-
-            TextField {
-                id: schdulePagesField
-                Layout.preferredWidth: 80
-                text: ""
+                Component.onCompleted: console.log("Playlist", ledNumber, bridge.getPlaylist(ledNumber-1))
             }
 
             Button {
                 text: "Saada"
-                onClicked: bridge.setSchedule(ledNumber-1, scheduleCombobox.currentText, schdulePagesField.text )
+                onClicked: {
+                    bridge.setSchedule(ledNumber-1, "A", playlistComboBox.currentText )
+                    playlistComboBox.currentIndex++;
+                }
             }
 
             Button {
-                text: "Peata"
+                text: "Schedule A"
                 onClicked: {
-                    schdulePagesField.text = "A"
-                    bridge.setSchedule(ledNumber-1, scheduleCombobox.currentText, "A" )
+                    bridge.setSchedule(ledNumber-1, "A", "A" )
                 }
             }
 
