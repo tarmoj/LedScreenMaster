@@ -146,8 +146,12 @@ Item {
                 id: playlistComboBox
                 Layout.preferredWidth: 160
                 model: bridge? bridge.getPlaylist(ledNumber-1) : ["A"]
+                editable: true
 
-                Component.onCompleted: console.log("Playlist", ledNumber, bridge.getPlaylist(ledNumber-1))
+                onAccepted: {
+                    console.log("combo text: ", editText)
+                    bridge.setSchedule(ledNumber-1, "A", editText )
+                }
             }
 
             Button {

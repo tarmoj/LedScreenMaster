@@ -110,9 +110,8 @@ class Bridge(QObject):
         if not wait:
             command += " &"
         result = subprocess.run(command, shell=True, capture_output=False, text=True) # this kind of works but no reasonable output
-        #result = subprocess.run(command.split(" "), check=True)
         print(result.returncode)
-        resultString="OK\n" if result.returncode==0 else "Error in: "+command+"\n"
+        #resultString="OK\n" if result.returncode==0 else "Error in: "+command+"\n"
         #self.consoleOutput.emit(resultString + result.stdout + result.stderr)
         #self.consoleOutput.emit(resultString)
         return result.returncode
