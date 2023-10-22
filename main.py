@@ -5,6 +5,7 @@ import sys, subprocess, json, re
 from PySide2.QtGui import QGuiApplication
 from PySide2.QtCore import QObject, Slot, Signal
 from PySide2.QtQml import QQmlApplicationEngine
+from time import sleep
 #from PySide2.QtQuickControls2 import QQuickStyle
 
 
@@ -18,7 +19,7 @@ commandPrefix = [
 'sshpass -praspberry ssh -t pi@192.168.1.212 \'sixleds {command}\' ',
 'sshpass -praspberry ssh -t pi@192.168.1.213 \'sixleds {command}\' ',
 'sshpass -pKontrabass8 ssh -t pi@192.168.1.214 \'sixleds {command}\' ',
-'sshpass -pK?ntrabass ssh -t tarmo@192.168.1.215 \'sixleds {command}\'',
+'sshpass -praspberry ssh -t pi@192.168.1.215 \'sixleds {command}\'',
 'sshpass -pRisset10 ssh -t tarmo@192.168.1.199 \'/home/tarmo/.local/bin/sixleds --port /dev/ttyUSB1 {command}\' ',
 #'sixleds --port /dev/ttyUSB0 {command}' # central machine
 ]
@@ -211,20 +212,6 @@ class Bridge(QObject):
         for page in ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]:
             self.send(ledIndex, "Leht "+page, "", page)
 
-
-    @Slot(int)
-    def loadPage_old(self, ledIndex):
-        for i in range(1):
-            fileName = "pages{}.json".format(ledIndex+1)
-            f = open(fileName)
-            data = json.load(f)
-            for page, text in data.items():
-                print(page, text)
-                options = ' --set-page {page} --content "{text}"'.format(text=text, page=page)
-                commandLine = commandPrefix[ledIndex].format(command=options)
-                self.execute_command(commandLine, wait=True)
-
-
     @Slot(int)
     def loadPage(self, ledIndex):
         for line in commands[ledIndex]:
@@ -235,7 +222,7 @@ class Bridge(QObject):
             commandContent = ' {options} --set-page {page} --content "{text}"'.format(options=options, text=line["text"], page=line["page"])
             commandLine = commandPrefix[ledIndex].format(command=commandContent)
             self.execute_command(commandLine, wait=True)
-
+            sleep(0.25)
 
 
 if __name__ == "__main__":

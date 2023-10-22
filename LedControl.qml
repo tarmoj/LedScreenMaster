@@ -128,19 +128,6 @@ Item {
 
             Label {text: "Järgnevus:" }
 
-//            ComboBox {
-//                id: scheduleCombobox
-//                Layout.preferredWidth: 80
-//                model: ["A", "B", "C", "D", "E"]
-//            }
-
-//            Label {text: "Lehed (tühjistamiseks tühi) :" }
-
-//            TextField {
-//                id: schdulePagesField
-//                Layout.preferredWidth: 80
-//                text: ""
-//            }
 
             ComboBox {
                 id: playlistComboBox
@@ -166,6 +153,13 @@ Item {
                 text: "Schedule A"
                 onClicked: {
                     bridge.setSchedule(ledNumber-1, "A", "A" )
+                }
+            }
+
+            Button {
+                text: "Tühista"
+                onClicked: {
+                    bridge.setSchedule(ledNumber-1, "A", "" )
                 }
             }
 
