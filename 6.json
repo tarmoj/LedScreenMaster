@@ -1,13 +1,18 @@
 [
-    {"text":"Mis vahet seal on, distantsilt pole midagi aru saada                                                                 "},
-	{"text":"Mida ta teeb?Tea,kas üldse kuskile kostan?                                                                                 "},
-	{"text":"Paus                                                                                                           "},
-	{"text":"Kus me oleme? Tempo-tempo                 kolm ja neli ja            Ei kuule mitte midagi                                      "},
-	{"text":"Viiulil on c''' kõrge                                                                                                    "},
-	{"text":"Jätaks kaks lööki vahele, saab ehk kokku…                                                                             "},
-	{"text":"crescendo                                           Võimas                                                                     "},
-	{"text":"Kõht on ilgelt tühi…                                                                                                         "},
-    {"text":"tühi                                                                                                                     "},
-	{"text":"Juta on ka siin                                                                                                                "}
-    
+    {"page":"A", "text":" ", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  A" },
+	{"page":"B", "text":"Pala meeleolude ja värvide palett lubas nautida kõikide ansamblistide tehnilist vabadust, millele andis erilise sära innukus ja mängulust.                                                                       "},
+    {"page":"C", "text":"Ümberkehastumine sellesse temperamentsesse, saatuslikku ja virtuoossesse maailma õnnestus ja vallandas kestva aplausi.                                                              "},
+    {"page":"D", "text":"Kuidagimoodi on see kõik nagu jookseksid jänesed igaviku poole, murumunad suus.                                                           "},
+    {"page":"E", "text":"Mulle meeldib kontsertidel käia, näed ja kuuled palju huvitavat. On ju põnev jälgida, kuidas loominguline protsess toimib ja miks.                                                                "},
+    {"page":"F", "text":"                      Lavastajakätt oli siin tõepoolest tunda                                          Tahaksin kiita kõiki mängijaid.                                                                "},
+    {"page":"G", "text":"Lummatud olen Vambola Krigulist              Täiuslikkuse huvides oleks soovinud pianistilt  kohati pisut rafineeritumat kaetumat kõla, ansamblimängu eripära.                                             "},
+    {"page":"H", "text":"Mängida on üldjuhul endal tore, vaadata enamasti igavavõitu.                                                                                               "},
+    {"page":"I", "text":"Võib ka nii öelda, et kuulda sai ülimalt kõnekaid, kujunditena kuulaja tajus kaasa mängivaid värvifinesse isikupäraselt koloriitses heliamalgaamis.                                                            "},
+    {"page":"J", "text":"Peale viimaste ülevate akordide vaibumist valitses saalis orkestrit ja kuulajaid ühendav kõikehõlmav harmoonia.                                                                               "},
+    {"page":"K", "text":"Pikk nagu teomehe tööpäev.           Vaheajal hõrenesid niigi vähese publiku read veel mõnekümne inimese võrra.                                                                            "},
+    {"page":"L", "text":"Võibolla ei peaks inimene, kelle noorus sattus eelmise sajandi kuue seitsmekümnendatesse sellist lavastust arvustama.                                                                                "},
+    {"page":"M", "text":"Pillimehed võiksid eelkõige pilli mängida."},
+    {"page":"N", "text":"Publik oli saanud, mida oli oodanud: muusikas olemise rõõmu või veel täpsemalt, võlu.                                                                      "},
+	{"page":"O", "text":"                                                                                                                                                                                                                  "}
+   	                                                                                                                                                                                                                  
 ] 

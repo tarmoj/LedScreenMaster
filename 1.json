@@ -1,7 +1,17 @@
 [
-    {"text":"Käsk1-1", "options": "--leading-fx A --lagging-fx B" },
-    
-    {"text":"See on pikk käsk, mis peaks ulatuma üle 26 tähe ja räägib kahest kaelkrijakust", "options": "--display-fx b" },
-    
-    {"text":"Käsk1-3"}
+    {"page":"A", "text":" ", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  A" },
+	{"page":"B", "text":"TUBLI", "options": "--leading-fx A --lagging-fx A --display-fx r --wait-time Z"},
+	{"page":"C", "text":"Mida ta teeb?                                 kiire               kiiremini                  kolm ja neli ja                                                                        Ei suuda nii kiiresti mängida"},
+	{"page":"D", "text":"Ei kuule mitte midagi                                                                               Mida ta teeb?                                                                                       crescendo"},
+	{"page":"E", "text":"Ei häälestu                                                                                      Kaks lehekülge veel                                                                   Miks ta nii suurelt näitab"},
+	{"page":"F", "text":"Kus me oleme?                                                                                                                                                                               Vaheaeg pressib peale"},
+	{"page":"G", "text":"Ei jõua ju mingil juhul enne kümmet       Siin läheb veel kaua          Takso?        Helista kohe                      Kohe tuleb paus      Helista            Köök          Söök       Pelmeenidega läheb ruttu"},
+	{"page":"H", "text":"coda                                                                                              Toon on palju paremaks läinud                                                                           jookseb"},
+	{"page":"K", "text":"Suur kunstnik valitseb aega ja ruumi                         "},
+    {"page":"L", "text":"Ning mitte pelgalt aega ja ruumi, kus pilli kõla kõnekaks väljenduseks saab, vaid ka dimensiooni, kus nii esitaja, teos kui kuulajaskond ühte vaimsesse tervikusse lõimuvad                                      "},
+    {"page":"M", "text":"Süvenev tonaalsus, interpreedi kõrge pianistlik kultuur ja isikupärane suhe esitatavaga lõid atmosfääri, kus muude väärtuste kõrval jäi valitsevaks muusika osaks sellest osasaamise siiras noot                 "},
+	{"page":"N", "text":"Tähelepanu väärib rafineeritud kõlakultuur. Selles arsenalis on nii kandvust kui läbipaistvust, värve ja varjundeid, tänu millele muutus klaverifaktuur õhuliseks ja kõrvale ladusalt loetavaks                  "},
+	{"page":"O", "text":"Tervikust rääkides ootasin nii mõnigi kord enam julgust tempodes ja kõlas, mõtlen siin just kiiremas liikumises teatud rõõmsat heledust või krõbedust, kohati ka kompaktsust                                     "},
+	{"page":"S", "text":"                                                                                                                                                                                                                 "}
+
 ] 

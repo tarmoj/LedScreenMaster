@@ -1,7 +1,26 @@
 [
-    {"text":"Käsk3-1", "options": "--leading-fx A --lagging-fx K" },
+    {"page":"A", "text":" ", "text":" ", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  A" },
+	{"page":"B", "text":"TUBLI", "options": "--leading-fx A --lagging-fx A --display-fx r --wait-time Z"},
+	{"page":"C", "text":"Näpud käima!                      Appi, kui must!                     Miks see koht kunagi ei häälestu?                      Ei tea, kas on liiga madal? Või kõrge?                     Peaks harjutama hakkama! "},
+    {"page":"D", "text":"Kus nad nüüd on?       Siin vist      Jätaks 2 lööki vahele, saab ehk kokku         Pagan, ikkagi õige oli        Iga kord on selle koha peal mingi jama!        Oh, vähemalt ühel ajal lõpetasime!              "},
+    {"page":"E", "text":"Tempo, tempo!                                  Kuhu ma selle kapi siis panen, toas on niigi vähe ruumi   "},
+    {"page":"F", "text":"Vaim on valmis, aga liha on nõder                  Välja tuli!                 Näpukesed, näpukesed!                     Tea, kas üldse kuskile kostan?                 Äkki on liiga vali?                Appike"},
+    {"page":"G", "text":"kolm korda veel           jõulisemalt, jõulisemalt        tõmba                                                  "},
+    {"page":"H", "text":"Mis kellani pidimegi tegema?                               Hirmus janu!                        Juuksurisse täna ei jõua                   Mitu lehekülge veel jäänud on?"},
+    {"page":"I", "text":"123   124   125   126   127   128   129   130   131   132   133   134   135   136   137   138   139   140   141   142   143                                             Rahu!"},
+    {"page":"J", "text":"Võiks õhtul midagi head süüa teha                Palav on           Selg väsib ära, teeks väikse pausi    "},
+    {"page":"K", "text":"Paraku oli seekord laval pehmelt öeldes sädeleva interpreedi keskpärane vari, intonatsioonilistest ebatäpsustest, kõlalisest forsseerimisest ning tekstiga slikerdamisest ei tasu siin rääkidagi                 "},
+    {"page":"L", "text":"Esitus aitas lahti harutada tavamõtlemise sõlmed ja pääseda omal moel kuulaja teadvusse.                                     "},
+    {"page":"M", "text":"Algusest kuni lõpuni ülimalt nauditavas esituses demonstreeriti kõike, mis keelpillimängus võimalik, ja tulemus pani saali rõkkama.                                   "},
+    {"page":"N", "text":"Kooriefekt näiteks andis klaverile puutetundlikkuse säilides elektriklaveri kurbliksooja varjundi ja täiendas harfi ülemhelitekstuure, elektroonilised kajad lisasid kõlaruumi.                                 "},
+    {"page":"W", "text":"oota", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  C" },
+    {"page":"X", "text":"mängi", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  C" },
+    {"page":"Y", "text":"kiiremini", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  C" },
+    {"page":"V", "text":"forte", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  C" },
+    {"page":"S", "text":"                                                                                                                                                                                                                 "}
+
     
-    {"text":"Käsk3-2" }
+    
     
 
 ] 

@@ -1,7 +1,23 @@
 [
-    {"text":"Käsk2-1", "options": "--leading-fx A --lagging-fx K" },
-    
-    {"text":"Käsk2-2" }
-    
-
+    {"page":"A", "text":" ", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  A" },
+	{"page":"B", "text":"TUBLI", "options": "--leading-fx A --lagging-fx A --display-fx r --wait-time Z"},
+	{"page":"C", "text":"Viiulil on c kõrge                                                                                                               Mängin täitsa OK"                                                               },
+    {"page":"D", "text":"Koju                                                                                                             Suust tuleb õlle lõhna                        Ikka unine                       Hästi läks kokku"},
+    {"page":"E", "text":"Kurat!                                     Ei kuule hästi                                             Ei kõla millegi pärast                                nii lühikese ajaga pole võimalik seda selgeks saada "},
+    {"page":"F", "text":"Auto jäi liiga kaugele                                        Ujuma                                No ikka liiga vara on                                Mööda!                                    Harjuta rohkem"},
+    {"page":"G", "text":"Tasa, tasa                                 Hingamine on paigast ära                                                        Magada                                                                 Hea näeb välja"},
+    {"page":"H", "text":"Õige!                                                                            "},
+    {"page":"I", "text":"Mingi 40 inimest vast on                                                     Nad ei saa vist aru                                                          Juta on ka siin"},
+    {"page":"K", "text":"Esitajal on ainet teose edasiküpetamiseks pikemate arengujoonte jälgimisel just elavamates variatsioonides, samuti polüfooniliste liinide järjekindlamal  läbiviimisel.            "},
+    {"page":"L", "text":"Kuulamise jooksul tekkis ka küsimus: kas legato’t välditakse põhimõtteliselt?"},
+    {"page":"M", "text":"Tekkisid säravad mustrid, igas suunas levivate võsudega mõtted, mis haakusid imepisikeste hammasrataste külge kuulaja hingetegevuses.          "},
+    {"page":"N", "text":"Soovitaksin vahetevahel ka midagi pedaalita jätta ja õhuauke armastada."},
+    {"page":"O", "text":"Akustilised instrumendid lõid helitekstuure ja abstraktseid  mustreid, mis oleksid ehk \"kuivalt\" jäänud hermeetilisteks.           "},
+    {"page":"P", "text":"Tänu elektroonilisele töötlusele aga avanesid atraktiivsete kujunditena ning hakkasid suhestuma videoinstallatsiooni seisunditega.     "},
+    {"page":"W", "text":"oota", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  C" },
+    {"page":"X", "text":"mängi", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  C" },
+    {"page":"Y", "text":"kiiremini", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  C" },
+    {"page":"Z", "text":"paus", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  C" },
+    {"page":"S", "text":"                                                                                                                                                                                                                 "}
+   
 ] 

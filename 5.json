@@ -1,7 +1,19 @@
 [
-    {"text":"Käsk5-1", "options": "--leading-fx A --lagging-fx K" },
+    {"page":"A", "text":" ", "options": "--leading-fx A --lagging-fx A --display-fx A --wait-time  A" },
+    {"page":"B", "text":"TUBLI", "options": "--leading-fx A --lagging-fx A --display-fx r --wait-time Z"},
+	{"page":"C", "text":"Kas mängime ikka sama lugu?                                                 Raisk                  Minu kord                                        "},
+    {"page":"D", "text":"Huvitav, kui harjutaks, kas siis tuleks paremini välja?                              Lepime ikka helistiku kõigepealt kokku                     "},
+    {"page":"E", "text":"Lahedalt pani      Tomat, muna, paprika, prügikotid, pesupulber, sojakaste, ploomimahl                                                                "},
+    {"page":"F", "text":"Mida sa vehid seal                                                                           Vale pill       Ei saanudki aru             Seda kohta peaks veits veel vaatama                 "},
+    {"page":"G", "text":"kuke-kukeke kuke-kukeke üks kaks kolm  kuke-kukeke üks ja kaks ja üks kaks kolm üks kaks kolm"},
+    {"page":"K", "text":"Ideaalis võiks staatiline dramaturgia kruvida pinget, kuid esitajalt eeldab see mingitki väljaõpet."},
+    {"page":"L", "text":"Muidugi võib tulla “mees metsast” ja publikul hinge kinni panna. Aga enamasti jääb lihtinimesel vaataja köitmiseks pelgalt lavalisest karismast pisut väheks.                       "},
+    {"page":"M", "text":"esimene kulges kiires tempos, töötas väljendusrikkal liikumismotoorikal, ent teine, aeglasema arengukõveraga etapp viis kuulaja pigem sonoristlikku kõlamaailma.                        "},
+    {"page":"N", "text":"Igas palas tabati ainuomane karakter, tempod ja iseloomulik rütmika ning vaevumärgatav vabadus fraseerimisel andis muusikale vajaliku hingamisruumi.                                     "},
+    {"page":"O", "text":"Rõõmustas kõlaline tasakaalukus ja ansamblitäpsus, kusjuures ei esinenud kadusid orkestri vahekorras muusikaliste väärtustega: teos esitati elurõõmsa naudinguga, mis ka kadudeta saali jõudis                   "},
+    {"page":"S", "text":"                                                                                                                                                                                                                 "}
+
     
-    {"text":"Käsk5-2" }
     
 
 ] 
